@@ -12,15 +12,14 @@ export const getAllProducts = async (req, res) => {
       }
 
 export const addProduct = async (req, res) => {
-    console.log("body...\n", req.body)
+    
     if(req.file){
         
     }
     const {name, price, description, category, imageUrl, stock_quantity} = req.body
-    console.log("name...",name)
+    
     const {data, error} = await supabase.from('product')
     .insert({name, price, description, category, imageUrl, stock_quantity}).select()
-    console.log("data...",data)
     if (data) {
         return res.status(201).json({message: "Product added successfully", data: data[0]})
     }
