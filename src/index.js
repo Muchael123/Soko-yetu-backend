@@ -3,6 +3,7 @@ import authRoutes from './routes/auth/index.js'
 import productsRoutes from './routes/products/index.js'
 import multer from "multer";
 import morgan from 'morgan';
+import serverless from "serverless-http";
 
 const upload = multer()
 const app = express()
@@ -26,7 +27,10 @@ app.get('/', (req, res) => {
 app.use(`${apiBasePath}/auth`, authRoutes)
 app.use(`${apiBasePath}/products`, productsRoutes)
 
-
-app.listen(port, () => {
-  console.log(`Example app listening on port http://localhost:${port}`)
-})
+  
+if (process.env.NODE_ENV === "dev") {
+  app.listen(port, () => {
+      console.log('App Running on port', port)
+  });
+}
+export const handler = serverless(app);
