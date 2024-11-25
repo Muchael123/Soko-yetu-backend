@@ -4,7 +4,6 @@ const AlterProduct = async (req, res) => {
     
     const {id} = req.params
     const Id = parseInt(id, 10)
-    console.log(req.body, id)
     if(!id){
         return res.status(400).json({error: "Product ID is required."})
     }

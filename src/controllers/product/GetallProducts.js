@@ -9,7 +9,6 @@ const getAllProducts = async (req, res) => {
   const start = (currentPage - 1) * pageSize; 
   const end = start + pageSize - 1;
 
-  console.log(`Page: ${currentPage}, Limit: ${pageSize}, Range: ${start}-${end}`);
 
   try {
     const { data, error } = await supabase
@@ -18,7 +17,6 @@ const getAllProducts = async (req, res) => {
       .range(start, end);
 
     if (error) {
-      console.error("Supabase Error:", error);
       return res.status(503).json({
         error: "Service is temporarily unavailable. Please try again later.",
       });
@@ -30,7 +28,6 @@ const getAllProducts = async (req, res) => {
 
     return res.status(200).json(data);
   } catch (error) {
-    console.error("Server Error:", error);
     return res.status(500).json({
       error: "Something went wrong. Try again later.",
     });

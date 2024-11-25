@@ -48,7 +48,6 @@ export const validateProduct = (req, res, next) => {
 
   const errors = validationResult(req); 
   if (errors.isEmpty()) {
-    console.log("No errors found");
     return next();
   }
 
@@ -58,7 +57,7 @@ export const validateProduct = (req, res, next) => {
 export const ProductPick = (req, res, next) => {
   
   const { name, price, description, category, imageUrl, stock_quantity } = req.body;
-  console.log(typeof description, description);
+  
   if (!name || !price || !description || !category || !imageUrl || !stock_quantity) {
     return res.status(400).json({ error: "All fields are required." });
   }
@@ -114,7 +113,6 @@ export const productEdit = [
 export const validateProductEdit = (req, res, next) => {
   const errors = validationResult(req); 
   if (errors.isEmpty()) {
-    console.log("No errors found");
     return next();
   }
 

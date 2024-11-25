@@ -6,7 +6,7 @@ import { supabase } from "../../supabase/db.js"
         
     }
     const {name, price, description, category, imageUrl, stock_quantity} = req.body
-    console.log(typeof description, description)
+    
     const {data, error} = await supabase.from('product')
     .insert({name, price, description, category, imageUrl, stock_quantity}).select()
     if (data) {

@@ -11,7 +11,6 @@ const SignUp = async (req, res) => {
         if (data) {
             const user = data.user
             const User = AddUser(user?.id, user?.email)
-            console.log("data from signup db",data, error, User)
             return res.status(200).json({ message: "Registration successful", data: user?.email })
         }
         if (error) {
